@@ -172,3 +172,4 @@ jobs:
       - name: build page
         run: sphinx-build docs/source docs/
         working-directory: ${{ github.workspace }}/ros/src/${{ github.event.repository.name }}
+        shell: bash -leo pipefail {0}
