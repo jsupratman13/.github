@@ -171,7 +171,7 @@ jobs:
         working-directory: ${{ github.workspace }}/ros/src/${{ github.event.repository.name }}
       - name: build page
         run: |
-          source ${{ github.workspace }}/ros/devel/setup.bash
-          sphinx-build docs/source docs/
-        working-directory: ${{ github.workspace }}/ros/src/${{ github.event.repository.name }}
+          source devel/setup.bash
+          sphinx-build src/${{ github.event.repository.name }}/docs/source src/${{ github.event.repository.name }}/docs/
+        working-directory: ${{ github.workspace }}/ros
         shell: bash -leo pipefail {0}
