@@ -163,7 +163,7 @@ jobs:
         timeout-minutes: 30
       - name: install sphinx dependencies
         run: |
-          apt-get install python-pip
+          apt-get install -y python-pip
           pip2 install -r docs/source/requirements.txt
       - name: generate restructuredtext
         run: sphinx-apidoc -f -e -o docs/source/ src/cube_python_api
