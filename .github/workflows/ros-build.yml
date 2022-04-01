@@ -162,7 +162,9 @@ jobs:
         working-directory: ${{ github.workspace }}/ros
         timeout-minutes: 30
       - name: install sphinx dependencies
-        run: pip2 install -r docs/source/requirements.txt
+        run: |
+          apt-get install python-pip
+          pip2 install -r docs/source/requirements.txt
       - name: generate restructuredtext
         run: sphinx-apidoc -f -e -o docs/source/ src/cube_python_api
       - name: build page
