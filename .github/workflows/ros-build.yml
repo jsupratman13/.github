@@ -170,6 +170,8 @@ jobs:
         run: sphinx-apidoc -f -e -o docs/source/ src/cube_python_api
         working-directory: ${{ github.workspace }}/ros/src/${{ github.event.repository.name }}
       - name: build page
-        run: sphinx-build docs/source docs/
+        run: |
+          source /opt/ros/${ROS_DISTRO}/setup.bash
+          sphinx-build docs/source docs/
         working-directory: ${{ github.workspace }}/ros/src/${{ github.event.repository.name }}
         shell: bash -leo pipefail {0}
