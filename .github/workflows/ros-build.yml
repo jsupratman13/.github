@@ -161,3 +161,21 @@ jobs:
         shell: bash
         working-directory: ${{ github.workspace }}/ros
         timeout-minutes: 30
+      - name: Generate documentations
+        run: |
+          apt-get install -y python-pip
+          pip2 install -r sphinx-build==1.8.6
+          pip2 install -r bs4
+          pip2 install -r docs/requirements.txt
+          sphinx-apidoc -f -e -o docs/ src/${{ github.event.repository.name }}
+          source ../../devel/setup.bash
+          sphinx-build docs/ docs/
+        shell: bash -leo pipefail {0}
+        working-directory: ${{ github.workspace }}/ros/src/${{ github.event.repository.name }}
+      - name: Publish documentations
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/
+          force_orphan: true
